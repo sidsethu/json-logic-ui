@@ -5,8 +5,8 @@ interface JsonLogicRule {
 }
 
 // Configuration for Azure OpenAI endpoint
-const AZURE_ENDPOINT = process.env.AZURE_ENDPOINT || '';
-const AZURE_API_KEY = process.env.AZURE_API_KEY || '';
+const AZURE_ENDPOINT = process.env.REACT_APP_AZURE_ENDPOINT || '';
+const AZURE_API_KEY = process.env.REACT_APP_AZURE_API_KEY || '';
 const REQUEST_TIMEOUT = 30000; // 30 seconds timeout
 
 export const validateJsonLogic = (logic: JsonLogicRule, data?: any): boolean => {
