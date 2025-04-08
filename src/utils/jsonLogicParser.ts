@@ -5,8 +5,15 @@ interface JsonLogicRule {
 }
 
 // Configuration for Azure OpenAI endpoint
-const AZURE_ENDPOINT = process.env.REACT_APP_AZURE_ENDPOINT || '';
-const AZURE_API_KEY = process.env.REACT_APP_AZURE_API_KEY || '';
+const AZURE_ENDPOINT = process.env.AZURE_ENDPOINT || '';
+const AZURE_API_KEY = process.env.AZURE_API_KEY || '';
+
+console.log('Debug - Environment Variables:', {
+  endpoint: AZURE_ENDPOINT,
+  apiKey: AZURE_API_KEY ? 'Present' : 'Missing',
+  constructedUrl: `${AZURE_ENDPOINT}/openai/deployments/gpt-4/chat/completions?api-version=2023-08-01-preview`
+});
+
 const REQUEST_TIMEOUT = 30000; // 30 seconds timeout
 
 export const validateJsonLogic = (logic: JsonLogicRule, data?: any): boolean => {
