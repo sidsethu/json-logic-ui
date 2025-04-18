@@ -5,13 +5,13 @@ interface JsonLogicRule {
 }
 
 // Configuration for Azure OpenAI endpoint
-const AZURE_ENDPOINT = process.env.AZURE_ENDPOINT || '';
-const AZURE_API_KEY = process.env.AZURE_API_KEY || '';
+const AZURE_ENDPOINT = process.env.REACT_APP_AZURE_ENDPOINT || '';
+const AZURE_API_KEY = process.env.REACT_APP_AZURE_API_KEY || '';
 
 console.log('Debug - Environment Variables:', {
   endpoint: AZURE_ENDPOINT,
   apiKey: AZURE_API_KEY ? 'Present' : 'Missing',
-  constructedUrl: `${AZURE_ENDPOINT}/openai/deployments/gpt-4/chat/completions?api-version=2023-08-01-preview`
+  constructedUrl: `${AZURE_ENDPOINT}/openai/deployments/genius-gpt4o-south-india/chat/completions?api-version=2023-08-01-preview`
 });
 
 const REQUEST_TIMEOUT = 30000; // 30 seconds timeout
@@ -35,11 +35,10 @@ export const generateJsonLogic = async (prompt: string): Promise<JsonLogicRule> 
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
 
-    const response = await fetch(`${AZURE_ENDPOINT}/openai/deployments/gpt-4/chat/completions?api-version=2023-08-01-preview`, {
+    const response = await fetch(`${AZURE_ENDPOINT}/openai/deployments/genius-gpt4o-south-india/chat/completions?api-version=2023-08-01-preview&api-key=${AZURE_API_KEY}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'api-key': AZURE_API_KEY
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         messages: [
